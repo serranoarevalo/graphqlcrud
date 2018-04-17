@@ -1,3 +1,3 @@
 # GraphQLCRUD
 
-Simple CRUD built with GraphQL and MongoDB for learning purposes.
+Simple CRUD built with GraphQL Yoga for learning porpuses.
