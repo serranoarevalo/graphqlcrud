@@ -1,11 +1,21 @@
-import express from "express";
-import bodyParser from "body-parser";
+import { GraphQLServer } from "graphql-yoga";
 import db from "./db";
 
-const app = express();
+const typeDefs = `
+    type Query{
+        info: String!
+    }
+`;
 
-app.use(bodyParser.json());
+const resolvers = {
+  Query: {
+    info: () => `GraphQL Crud`
+  }
+};
 
-app.get("/", (req, res) => res.send("Hello world"));
+const server = new GraphQLServer({
+  typeDefs,
+  resolvers
+});
 
-app.listen("3000", () => console.log("Server runnign in the 3000"));
+server.start(() => console.log("Server is runnign on port 4000"));
