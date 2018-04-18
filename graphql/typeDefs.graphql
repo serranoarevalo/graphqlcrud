@@ -1,0 +1,15 @@
+type Query {
+  movies: [Movie]!
+}
+
+type Mutation {
+  create(url: String!, description: String!): Movie!
+}
+
+type Movie {
+  id: ID!
+  title: String!
+  year: Int!
+  description: String!
+  seen: Boolean!
+}

@@ -8,25 +8,10 @@ let links = [
   }
 ];
 
-const typeDefs = `
-    type Query{
-        info: String!
-        feed: [Link]!
-    }
-    type Mutation{
-        create(url: String!, description: String!): Link!
-    }
-    type Link{
-        id: ID!
-        description: String!
-        url: String!
-    }
-`;
 let idCount = links.length;
 const resolvers = {
   Query: {
-    info: () => `GraphQL Crud`,
-    feed: () => links
+    movies: () => links
   },
   Mutation: {
     create: (root, args) => {
@@ -42,7 +27,7 @@ const resolvers = {
 };
 
 const server = new GraphQLServer({
-  typeDefs,
+  typeDefs: "graphql/typeDefs.graphql",
   resolvers
 });
 
