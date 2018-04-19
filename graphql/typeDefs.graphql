@@ -1,5 +1,6 @@
 type Query {
   movies(seen: Boolean): [Movie]!
+  movie(id: ID!): Movie
 }
 
 type Mutation {

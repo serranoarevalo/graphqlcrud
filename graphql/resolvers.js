@@ -8,6 +8,10 @@ const resolvers = {
       } else {
         return movies;
       }
+    },
+    movie: (obj, { id }) => {
+      const filteredMovies = movies.filter(movie => id === movie.id);
+      if (filteredMovies[0]) return filteredMovies[0];
     }
   },
   Mutation: {
