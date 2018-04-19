@@ -1,31 +1,30 @@
-import movies from "./db";
+import {
+  getMovies,
+  findMovieById,
+  filteredMovies,
+  createMovie,
+  deleteMovieById
+} from "./db";
 const resolvers = {
   Query: {
     movies: (obj, args) => {
       if (args.hasOwnProperty("seen")) {
-        const filteredMovies = movies.filter(movie => movie.seen === args.seen);
-        return filteredMovies;
+        filteredMovies(args.seen);
       } else {
-        return movies;
+        return getMovies();
       }
     },
     movie: (obj, { id }) => {
-      const filteredMovies = movies.filter(movie => id === movie.id);
-      if (filteredMovies[0]) return filteredMovies[0];
+      return findMovieById(id);
     }
   },
   Mutation: {
     create: (root, args) => {
       const { title, year, description, seen } = args;
-      const movie = {
-        id: `${movies.length++}`,
-        title,
-        year,
-        description,
-        seen
-      };
-      movies.push(movie);
-      return movie;
+      return createMovie(title, year, description, seen);
+    },
+    delete: (root, { id }) => {
+      return deleteMovieById(id);
     }
   }
 };
