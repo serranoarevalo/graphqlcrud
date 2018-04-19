@@ -1,7 +1,14 @@
 import movies from "./db";
 const resolvers = {
   Query: {
-    movies: () => movies
+    movies: (obj, args) => {
+      if (args.hasOwnProperty("seen")) {
+        const filteredMovies = movies.filter(movie => movie.seen === args.seen);
+        return filteredMovies;
+      } else {
+        return movies;
+      }
+    }
   },
   Mutation: {
     create: (root, args) => {
