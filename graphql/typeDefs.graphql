@@ -3,7 +3,12 @@ type Query {
 }
 
 type Mutation {
-  create(url: String!, description: String!): Movie!
+  create(
+    title: String!
+    year: Int!
+    description: String!
+    seen: Boolean!
+  ): Movie!
 }
 
 type Movie {
